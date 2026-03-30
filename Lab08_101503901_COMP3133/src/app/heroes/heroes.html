@@ -1,0 +1,38 @@
+<!-- Lab 08 - Exercise #1, #2, #3 -->
+
+<h2>My Heroes</h2>
+
+<!-- Exercise #2: removeSpaces pipe applied to hero names -->
+<!-- The pipe replaces '-' with ' ' (space) in each name -->
+<ul class="heroes">
+  <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
+      [class.selected]="hero === selectedHero">
+    <span class="badge">{{ hero.id }}</span>
+    <span>{{ hero.name | removeSpaces }}</span>
+  </li>
+</ul>
+
+<!-- Exercise #1: Structural Directives (*ngIf) and Data Binding ([(ngModel)]) -->
+<div *ngIf="selectedHero">
+  <h2>{{ (selectedHero.name | removeSpaces) | uppercase }} Details</h2>
+  <div><span>id: </span>{{ selectedHero.id }}</div>
+  <div>
+    <label for="hero-name">Hero name: </label>
+    <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name" />
+  </div>
+</div>
+
+<!-- Exercise #3: Custom inputFormat Directive -->
+<!-- When the user clicks away (blur), the text converts to UPPERCASE -->
+<div style="margin-top: 20px;">
+  <h3>Input Format Directive Demo</h3>
+  <label for="format-input">Type something and click away: </label>
+  <input
+    id="format-input"
+    type="text"
+    appInputFormat
+    placeholder="Type here and click outside..."
+    style="margin-left: 8px; padding: 4px 8px;"
+  />
+  <p><em>Text will be converted to UPPERCASE on blur (OnBlur event)</em></p>
+</div>
